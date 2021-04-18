@@ -3,14 +3,13 @@ import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router-dom'; 
 import { renderToString } from 'react-dom/server';
 import { matchRoutes } from "react-router-config";
-
 import Routes, { routes } from '../client/router';
 import { getServerStore } from "../client/store";
+
 
 // 改造这里 服务端做数据预取
 const loadBranchData = (pathname, store) => {
   const branch = matchRoutes(routes, pathname)
-
 // warning: 这里route.loadData 需要错误捕获
   const promises = branch.map(({ route, match }) => {
     return route.loadData
@@ -23,7 +22,6 @@ const loadBranchData = (pathname, store) => {
 
 export const render = (req, res) => {
   const store = getServerStore();
-  // console.log(req.baseUrl, 'req.baseUrl')
   const context = { css: [] };
   // 加载完数据后，再把组件生成字符串返回，现在返回的组件都是有数据的结果
   loadBranchData(req.baseUrl, store).then((data) => {

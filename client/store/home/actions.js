@@ -16,7 +16,7 @@ export const getHomeData = () => {
     return axiosInstance.get('/api/homedata')
       .then((res) => {
         const data = res.data;
-        return dispatch(homeData(data.data))
+        return dispatch(homeData(data))
       }).catch(() => {});
   };
 }

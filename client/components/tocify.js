@@ -14,10 +14,6 @@ const { Link } = Anchor;
 // export type TocItems = TocItem[]; // TOC目录树结构
 
 export default class Tocify {
-  tocItems = [];
-
-  index = 0;
-
   constructor() {
     this.tocItems = [];
     this.index = 0;
@@ -56,7 +52,7 @@ export default class Tocify {
     return anchor;
   }
 
-  reset = () => {
+  reset(){
     this.tocItems = [];
     this.index = 0;
   };

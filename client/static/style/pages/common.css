@@ -1,13 +1,13 @@
 body{
   background-color: 	#FFC0CB;
 }
-.commLeft{
+.comm-left{
   background-color: 	#FFB6C1;
   padding:.3rem;
   border-radius: .3rem;
   border-bottom:1px solid #FFB6C1;
 }
-.commRight{
+.comm-right{
   background-color: #FFB6C1;
   margin-left: .5rem;
   padding:.3rem;
@@ -15,7 +15,7 @@ body{
   border-bottom:1px solid #FFB6C1;
 
 }
-.commMain{
+.comm-main{
   margin-top: .5rem;
 }
 .ListTitle{

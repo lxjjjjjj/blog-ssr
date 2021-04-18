@@ -1,9 +1,10 @@
 import React from 'react'
-import '../static/style/components/Advert.css'
+import withStyle from '../hoc/withStyle'
+import styles from '../static/style/components/Advert.css'
 import { Divider } from 'antd'
 const Advert = () => {
     return (
-        <div className="ad-div comm-box">
+        <div className={styles['ad-div']}>
             <Divider >实习经历</Divider>
             <div>
                 知乎2019.11-至今：
@@ -27,4 +28,4 @@ const Advert = () => {
     )
 }
 
-export default Advert
+export default withStyle(styles)(Advert)
