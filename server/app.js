@@ -3,12 +3,8 @@ const { render } = require('./utils');
 const app = express()
 const mysql = require('mysql');
 app.use(express.static('dist'));
+const router = express.Router();
 
-const list = [
-  {id:1,typeId:1,title:'react-hooks',articleContent:'react-hooks在我这里已经没有秘密了',introduce:'关于react-hooks的踩坑点',addtime:'1580740022'},
-  {id:2,typeId:2,title:'webpack',articleContent:'webpack我总会弄懂你的，我要去了解基本内容了',introduce:'关于webpack的基本配置和分包策略',addtime:'1580659200'},
-  {id:3,typeId:3,title:'react ssr',articleContent:'ssr 我已经要成功了哦',introduce:'关于webpack的基本配置和分包策略',addtime:'1618733235'},
-]
 // 链接数据库
 var connection = mysql.createConnection({
   host: '8.129.60.15',
@@ -54,8 +50,8 @@ app.get('/api/homedata', function(req, res, next) {
     // })
   })
 })
-app.get('/detail', function(req, res, next) {
-  console.log('req :', req);
+app.use('/api/detailData', function(req, res, next) {
+  // const id = req.baseUrl.slice(req.baseUrl.length-1,req.baseUrl.length);
   const sql = 'SELECT article.id as id,' +
   'article.title as title,' +
   'article.introduce as introduce,' +
@@ -81,7 +77,6 @@ app.get('/detail', function(req, res, next) {
     // })
   })
 })
-
 app.use('*', function(req, res, next) {
   if(req.baseUrl === '/favicon.ico') return res.end()
   // res.send(render(req))

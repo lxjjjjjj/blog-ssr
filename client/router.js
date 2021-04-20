@@ -1,21 +1,18 @@
 import React from 'react';
 import { renderRoutes } from "react-router-config";
 import { getHomeData } from '../client/store/home/actions'
+import { getDetailData } from '../client/store/detail/actions'
 import Home from './routes/Home';
 import Detail from './routes/Detail'
-import { flattenRoutes, getBreadcrumbs} from './utils'
+import { Col } from 'antd';
 const loadHomeData=(store, match)=> {
   // 参数 match 是当前匹配路由的信息
   return store.dispatch(getHomeData())
 }
-// 根组件
-const Root = ({ route, ...rest }) => {
-  return (
-    <div>
-      {renderRoutes(route.routes)}
-    </div>
-  )
-};
+const loadDetailData=(store, match)=> {
+  // 参数 match 是当前匹配路由的信息
+  return store.dispatch(getDetailData())
+}
 
 export const routes = [
   {
@@ -27,7 +24,8 @@ export const routes = [
       {
         breadcrumb: 'detail',
         path: "/detail/:id",
-        component: Detail
+        component: Detail,
+        loadData:loadDetailData
       }
     ]
   }

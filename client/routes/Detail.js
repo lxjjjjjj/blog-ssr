@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import { getDetailData } from '../store/detail/actions'
 import { Row, Col, Affix, Icon, Breadcrumb } from 'antd'
 import marked from 'marked'
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 import MarkNav from 'markdown-navbar';
@@ -35,9 +37,11 @@ const Detail = (props) => {
     }
   });
  
-  let html = marked(props.article_content)
+  let html = marked(props.detail.article_content)
   useEffect(()=>{
-    console.log('aaaa :');
+    if(JSON.stringify(props.detail) !== '{}' ) {
+      props.getDetailData()
+    }
   },[])
   return (
     <>
@@ -55,13 +59,13 @@ const Detail = (props) => {
 
             <div>
               <div className={styles["detail-title"]}>
-                {props.title}
+                {props.detail.title}
               </div>
 
               <div className={styles["list-icon center"]}>
-                <span><Icon type="calendar" /> {props.addTime}</span>
-                <span><Icon type="folder" /> {props.typeName}</span>
-                <span><Icon type="fire" /> {props.view_count}</span>
+                <span><Icon type="calendar" /> {props.detail.addTime}</span>
+                <span><Icon type="folder" /> {props.detail.typeName}</span>
+                <span><Icon type="fire" /> {props.detail.view_count}</span>
               </div>
 
               <div className={styles["detail-content"]}
@@ -92,4 +96,13 @@ const Detail = (props) => {
     </>
   )
 }
-export default withStyle(styles)(Detail)
+const mapStateToProps = (state) => {
+  return {
+    detail: state.detail.detailData
+  }
+}
+
+export default compose(
+  connect(mapStateToProps, {getDetailData}),
+  withStyle(styles)
+)(Detail)

@@ -1,10 +1,12 @@
 import thunk from 'redux-thunk';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import homeReducer from './home';
+import detailReducer from './detail'
 import { clientAxiosInstance, serverAxiosInstance } from '../utils/axios';
 //合并项目组件中store的reducer
 const reducer = combineReducers({
-  home: homeReducer
+  home: homeReducer,
+  detail:detailReducer
 })
 //创建store，并引入中间件thunk进行异步操作的管理
 // const store = createStore(reducer, applyMiddleware(thunk));
