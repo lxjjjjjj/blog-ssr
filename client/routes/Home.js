@@ -52,7 +52,7 @@ const Home = (props)=> {
               <List.Item>
                 <div className="list-title">
                   <Link to={`/detail/${item.id}`}>
-                    <a>{item.title}</a>
+                    {item.title}
                   </Link>
                 </div>
                 <div className="list-icon">
