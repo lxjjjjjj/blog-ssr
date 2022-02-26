@@ -51,9 +51,9 @@ const Home = (props)=> {
             renderItem={item => (
               <List.Item>
                 <div className="list-title">
-                  <Link to={`/detail/${item.id}`}>
+                  {/* <Link to={`/detail/${item.id}`}> */}
                     {item.title}
-                  </Link>
+                  {/* </Link> */}
                 </div>
                 <div className="list-icon">
                   <span><Icon type="calendar" /> {item.addTime}</span>
