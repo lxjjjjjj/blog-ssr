@@ -70,11 +70,10 @@ export const render = (req, res) => {
       <html>
         <head>
           <title>刘相君的博客</title>
-          <link rel="stylesheet" href="">
           <style>
-          ${'@import "antd/dist/antd.css";'}
           ${cssStr}
           </style>
+          <style src="antd/dist/antd.css"></style>
         </head>
         <body>
           <div id="root">${content}</div>
