@@ -1,5 +1,6 @@
 import React from 'react';
 import { renderRoutes } from "react-router-config";
+import { Router, Route } from 'react-router'
 import { getHomeData } from '../client/store/home/actions'
 import { getDetailData } from '../client/store/detail/actions'
 import Home from './routes/Home';
@@ -28,9 +29,13 @@ export const routes = [
     loadData:loadDetailData
   }
 ];
-console.log('renderRoutes(routes)',renderRoutes(routes))
+
 export default (
   <div>
-    { renderRoutes(routes) }
+    {/* { renderRoutes(routes) } */}
+    <Router>
+      <Route path="/" component={Home}/>
+      <Route path="/detail/:id" component={Detail} />
+    </Router>
   </div>
 )
