@@ -70,7 +70,7 @@ export const render = (req, res) => {
       <html>
         <head>
           <title>刘相君的博客</title>
-          <link rel="stylesheet" href="http://09x.ant.design/dist/antd.css">
+          <link rel="stylesheet" href="http://8.129.60.15/app/ssr/blog-ssr/node_modules/antd/dist/antd.css">
           <style>
           ${cssStr}
           </style>
