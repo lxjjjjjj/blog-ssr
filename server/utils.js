@@ -37,7 +37,7 @@ const loadBranchData = (pathname, store) => {
 
 export const render = (req, res) => {
   const store = getServerStore();
-  const context = { css: antdCss };
+  const context = { css: [] };
   // 加载完数据后，再把组件生成字符串返回，现在返回的组件都是有数据的结果
   loadBranchData(req.baseUrl, store).then((data) => {
     // 到这里所有的数据预加载完毕
