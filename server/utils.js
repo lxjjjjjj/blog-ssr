@@ -5,7 +5,8 @@ import { renderToString } from 'react-dom/server';
 import { matchRoutes } from "react-router-config";
 import Routes, { routes } from '../client/router';
 import { getServerStore } from "../client/store";
-
+import StyleContext from 'isomorphic-style-loader/StyleContext'
+import antdCss from 'antd/dist/antd.css'
 
 // 改造这里 服务端做数据预取
 const loadBranchData = (pathname, store) => {
@@ -49,16 +50,18 @@ export const render = (req, res) => {
   })
   //构建服务端的路由
   // const content = renderToString(React.createElement(StaticRouter, {location: req.path}, Routes));
-  
+  const insertCss = antdCss._getCss()
   function getRenderString() {
     const content = renderToString(
       // Warning 这里的 store 一定要和 loadBranchData 的store一致，因为预取的数据要在流到组件中，组件再被生成字符串返回
       // 如果这两个store不一致，将即使数据预取成功，也没有再次流到组件中
-      <Provider store={store}>
-        <StaticRouter location={req.baseUrl} context={context}>
-          {Routes}
-        </StaticRouter>
-      </Provider>
+      <StyleContext.Provider value={{ insertCss }}>
+        <Provider store={store}>
+          <StaticRouter location={req.baseUrl} context={context}>
+            {Routes}
+          </StaticRouter>
+        </Provider>
+      </StyleContext.Provider>
     );
     // 服务端的 renderToString执行完后 context中已经被注入了数据
     const cssStr = context.css.length ? context.css.join('\n') : '';
@@ -73,7 +76,9 @@ export const render = (req, res) => {
           <style>
           ${cssStr}
           </style>
-          <style src="/antdCss.css"></style>
+          <style>
+          ${insertCss}
+          </style>
         </head>
         <body>
           <div id="root">${content}</div>
