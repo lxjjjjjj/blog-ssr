@@ -10,6 +10,7 @@ import { getServerStore } from "../client/store";
 // 改造这里 服务端做数据预取
 const loadBranchData = (pathname, store) => {
   let branch
+  console.log('pathname',pathname,pathname === '/')
   if (pathname === '/') {
     branch = matchRoutes(routes, pathname).filter((item=>{
       return item.match.isExact
