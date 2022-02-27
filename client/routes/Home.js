@@ -11,6 +11,7 @@ import Auhtor from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import marked from 'marked'
+import Detail from './Detail.js'
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 
@@ -51,7 +52,7 @@ const Home = (props)=> {
             renderItem={item => (
               <List.Item>
                 <div className="list-title">
-                  <Link to={`/detail/${item.id}`}>
+                  <Link to={`/detail/${item.id}`} component={Detail}>
                     {item.title}
                   </Link>
                 </div>
