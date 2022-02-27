@@ -73,7 +73,7 @@ export const render = (req, res) => {
           <style>
           ${cssStr}
           </style>
-          <style src="antd/dist/antd.css"></style>
+          <style src="/antdCss.css"></style>
         </head>
         <body>
           <div id="root">${content}</div>
