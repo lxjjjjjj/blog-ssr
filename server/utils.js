@@ -9,6 +9,7 @@ import { getServerStore } from "../client/store";
 
 // 改造这里 服务端做数据预取
 const loadBranchData = (pathname, store) => {
+  console.log('pathname',pathname)
   let branch
   if (!pathname) {
     branch = matchRoutes(routes, pathname).filter((item=>{
@@ -22,9 +23,10 @@ const loadBranchData = (pathname, store) => {
   }
   console.log('branch',branch)
 // warning: 这里route.loadData 需要错误捕获
-  const promises = branch.map(({ route, match }) => {
+  const promises = branch.map((route) => {
+    console.log('route',route)
     return route.loadData
-      ? route.loadData(store, match) // 把store 和 match 传入数据预取函数
+      ? route.loadData(store) // 把store 和 match 传入数据预取函数
       : Promise.resolve(null)
   })
  
