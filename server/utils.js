@@ -69,9 +69,9 @@ export const render = (req, res) => {
     return `
       <html>
         <head>
-          <title>ssr</title>
+          <title>刘相君的博客</title>
           <style>
-          ${"import 'antd/dist/antd.css';"}
+          ${"@import 'antd/dist/antd.css';"}
           ${cssStr}
           </style>
         </head>
