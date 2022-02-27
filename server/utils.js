@@ -9,10 +9,17 @@ import { getServerStore } from "../client/store";
 
 // 改造这里 服务端做数据预取
 const loadBranchData = (pathname, store) => {
-  pathname = pathname.split('/')[1]
-  const branch = routes.filter((item=>{
-    return item.path.includes(pathname)
-  }))
+  let branch
+  if (pathname === '/') {
+    branch = matchRoutes(routes, pathname).filter((item=>{
+      return item.match.isExact
+    }))
+  } else {
+    pathname = pathname.split('/')[1]
+    branch = routes.filter((item=>{
+      return item.path.includes(pathname)
+    }))
+  }
   console.log('branch',branch)
 // warning: 这里route.loadData 需要错误捕获
   const promises = branch.map(({ route, match }) => {
