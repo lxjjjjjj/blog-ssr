@@ -32,10 +32,6 @@ export const routes = [
 
 export default (
   <div>
-    {/* { renderRoutes(routes) } */}
-    <Router>
-      <Route path="/" component={Home}/>
-      <Route path="/detail/:id" component={Detail} />
-    </Router>
+    { renderRoutes(routes) }
   </div>
 )
