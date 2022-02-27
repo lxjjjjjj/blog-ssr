@@ -55,7 +55,7 @@ export const render = (req, res) => {
     const content = renderToString(
       // Warning 这里的 store 一定要和 loadBranchData 的store一致，因为预取的数据要在流到组件中，组件再被生成字符串返回
       // 如果这两个store不一致，将即使数据预取成功，也没有再次流到组件中
-      <StyleContext.Provider value={{ insertCss }}>
+      <StyleContext.Provider value={{ antdCss }}>
         <Provider store={store}>
           <StaticRouter location={req.baseUrl} context={context}>
             {Routes}
