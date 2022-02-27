@@ -32,8 +32,6 @@ export const routes = [
 
 export default (
   <div>
-    <Router>
       { renderRoutes(routes) }
-    </Router>
   </div>
 )
