@@ -5,7 +5,7 @@ import { renderToString } from 'react-dom/server';
 import { matchRoutes } from "react-router-config";
 import Routes, { routes } from '../client/router';
 import { getServerStore } from "../client/store";
-import antdCss from 'antd/dist/antd.css';
+
 
 // 改造这里 服务端做数据预取
 const loadBranchData = (pathname, store) => {
@@ -61,8 +61,7 @@ export const render = (req, res) => {
       </Provider>
     );
     // 服务端的 renderToString执行完后 context中已经被注入了数据
-    // const cssStr = context.css.length ? context.css.join('\n') : '';
-    const cssStr = context.css
+    const cssStr = context.css.length ? context.css.join('\n') : '';
     // 数据注水
     const hydrate = `
       window.initialState = ${JSON.stringify(store.getState())};
@@ -71,7 +70,10 @@ export const render = (req, res) => {
       <html>
         <head>
           <title>ssr</title>
-          <style>${cssStr}</style>
+          <style>
+          ${"import 'antd/dist/antd.css';"}
+          ${cssStr}
+          </style>
         </head>
         <body>
           <div id="root">${content}</div>
