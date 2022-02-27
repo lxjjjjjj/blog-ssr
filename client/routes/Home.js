@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { getHomeData } from '../store/home/actions'
 import withStyle from '../hoc/withStyle'
 import styles from '../static/style/pages/home.css'
-import antdCss from '../antdCss.css'
+// import antdCss from '../antdCss.css'
 import { Link } from 'react-router-dom'
 import { Row, Col, List, Icon } from 'antd'
 import Header from '../components/Header'
@@ -15,7 +15,7 @@ import marked from 'marked'
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 
-const composeStyles = Object.assign(styles,antdCss)
+// const composeStyles = Object.assign(styles,antdCss)
 const Home = (props)=> {
   const renderer = new marked.Renderer();
   marked.setOptions({
@@ -88,5 +88,5 @@ const mapStateToProps = (state) => {
 
 export default compose(
   connect(mapStateToProps, {getHomeData}),
-  withStyle(composeStyles)
+  withStyle(styles)
 )(Home)
