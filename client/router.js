@@ -20,14 +20,12 @@ export const routes = [
     path: "/",
     component: Home,
     loadData: loadHomeData,
-    routes: [
-      {
-        breadcrumb: 'detail',
-        path: "/detail/:id",
-        component: Detail,
-        loadData:loadDetailData
-      }
-    ]
+  },
+  {
+    breadcrumb: 'detail',
+    path: "/detail/:id",
+    component: Detail,
+    loadData:loadDetailData
   }
 ];
 
