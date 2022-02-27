@@ -42,7 +42,9 @@ export const render = (req, res) => {
   // 加载完数据后，再把组件生成字符串返回，现在返回的组件都是有数据的结果
   loadBranchData(req.baseUrl, store).then((data) => {
     // 到这里所有的数据预加载完毕
+    console.log('data',data)
     const string = getRenderString()
+    console.log('string',string)
     res.send(string);
   }).catch((_err) => {
     console.log(_err)
