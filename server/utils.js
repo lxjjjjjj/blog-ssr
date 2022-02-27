@@ -12,6 +12,7 @@ const loadBranchData = (pathname, store) => {
   const branch = matchRoutes(routes, pathname).filter((item=>{
     return item.match.isExact
   }))
+  console.log('branch',branch)
 // warning: 这里route.loadData 需要错误捕获
   const promises = branch.map(({ route, match }) => {
     return route.loadData
@@ -25,8 +26,9 @@ const loadBranchData = (pathname, store) => {
 export const render = (req, res) => {
   const store = getServerStore();
   const context = { css: [] };
+  console.log('req.path',req.path)
   // 加载完数据后，再把组件生成字符串返回，现在返回的组件都是有数据的结果
-  loadBranchData(req.baseUrl, store).then((data) => {
+  loadBranchData(req.path, store).then((data) => {
     // 到这里所有的数据预加载完毕
     const string = getRenderString()
     res.send(string);
