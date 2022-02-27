@@ -11,7 +11,6 @@ import Auhtor from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import marked from 'marked'
-import Detail from './Detail.js'
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 
@@ -56,7 +55,6 @@ const Home = (props)=> {
                     {item.title}
                   </Link>
                 </div>
-                <Route path={`/detail/${item.id}`} component={Detail} />
                 <div className="list-icon">
                   <span><Icon type="calendar" /> {item.addTime}</span>
                   <span><Icon type="folder" /> {item.typeName}</span>
