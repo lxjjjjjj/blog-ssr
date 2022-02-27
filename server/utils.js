@@ -20,13 +20,15 @@ const loadBranchData = (pathname, store) => {
     branch = routes.filter((item=>{
       return item.path.includes(newPath)
     }))
+    branch = {
+      route:branch
+    }
   }
   console.log('branch',branch)
 // warning: 这里route.loadData 需要错误捕获
-  const promises = branch.map((route) => {
-    console.log('route',route)
+  const promises = branch.map(({ route, match }) => {
     return route.loadData
-      ? route.loadData(store) // 把store 和 match 传入数据预取函数
+      ? route.loadData(store, match) // 把store 和 match 传入数据预取函数
       : Promise.resolve(null)
   })
  
