@@ -29,9 +29,9 @@ const loadBranchData = (pathname, store) => {
 export const render = (req, res) => {
   const store = getServerStore();
   const context = { css: [] };
-  console.log('req.path',req.path)
+  console.log('req.baseUrl',req.baseUrl)
   // 加载完数据后，再把组件生成字符串返回，现在返回的组件都是有数据的结果
-  loadBranchData(req.path, store).then((data) => {
+  loadBranchData(req.baseUrl, store).then((data) => {
     // 到这里所有的数据预加载完毕
     const string = getRenderString()
     res.send(string);
@@ -47,7 +47,7 @@ export const render = (req, res) => {
       // Warning 这里的 store 一定要和 loadBranchData 的store一致，因为预取的数据要在流到组件中，组件再被生成字符串返回
       // 如果这两个store不一致，将即使数据预取成功，也没有再次流到组件中
       <Provider store={store}>
-        <StaticRouter location={req.path} context={context}>
+        <StaticRouter location={req.baseUrl} context={context}>
           {Routes}
         </StaticRouter>
       </Provider>

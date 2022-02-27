@@ -80,7 +80,6 @@ app.use('/api/detailData', function(req, res, next) {
 app.use('*', function(req, res, next) {
   if(req.baseUrl === '/favicon.ico') return res.end()
   // res.send(render(req))
-  console.log('app use req.path',req)
   render(req, res)
 })
 app.listen(3001, () => {
