@@ -9,6 +9,7 @@ import Router from './router'
 
 const App = () => {
   return (
+    //为了防止客户端重复渲染出现闪烁 所以在客户端和服务端都要注入相同的props 和 store
     <Provider store={getClientStore()}>
       <BrowserRouter>
         {Router}
