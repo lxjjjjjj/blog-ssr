@@ -52,10 +52,11 @@ const Home = (props)=> {
             renderItem={item => (
               <List.Item>
                 <div className="list-title">
-                  <Link to={`/detail/${item.id}`} component={Detail}>
+                  <Link to={`/detail/${item.id}`}>
                     {item.title}
                   </Link>
                 </div>
+                <Route path={`/detail/${item.id}`} component={Detail} />
                 <div className="list-icon">
                   <span><Icon type="calendar" /> {item.addTime}</span>
                   <span><Icon type="folder" /> {item.typeName}</span>
