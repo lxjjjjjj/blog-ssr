@@ -9,11 +9,9 @@ import { getServerStore } from "../client/store";
 
 // 改造这里 服务端做数据预取
 const loadBranchData = (pathname, store) => {
-  console.log('pathname',pathname)
-  console.log('routes',routes)
-  const branch = matchRoutes(routes, pathname).filter((item=>{
-    console.log('item',item)
-    return item.match.isExact
+  pathname = pathname.split('/')[1]
+  const branch = routes.filter((item=>{
+    return item.path.includes(pathname)
   }))
   console.log('branch',branch)
 // warning: 这里route.loadData 需要错误捕获
@@ -29,7 +27,6 @@ const loadBranchData = (pathname, store) => {
 export const render = (req, res) => {
   const store = getServerStore();
   const context = { css: [] };
-  console.log('req.baseUrl',req.baseUrl)
   // 加载完数据后，再把组件生成字符串返回，现在返回的组件都是有数据的结果
   loadBranchData(req.baseUrl, store).then((data) => {
     // 到这里所有的数据预加载完毕
