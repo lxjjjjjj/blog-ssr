@@ -33,7 +33,7 @@ export const routes = [
 export default (
   <div>
       {/* { renderRoutes(routes) } */}
-      {Router.map((router) => (
+      {routes.map((router) => (
         <Route {...router} />
       ))}
   </div>
