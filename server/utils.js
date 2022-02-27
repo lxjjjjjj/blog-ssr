@@ -20,9 +20,9 @@ const loadBranchData = (pathname, store) => {
     branch = routes.filter((item=>{
       return item.path.includes(newPath)
     }))
-    branch = {
+    branch = [{
       route:branch
-    }
+    }]
   }
   console.log('branch',branch)
 // warning: 这里route.loadData 需要错误捕获
