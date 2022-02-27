@@ -5,7 +5,7 @@ import { renderToString } from 'react-dom/server';
 import { matchRoutes } from "react-router-config";
 import Routes, { routes } from '../client/router';
 import { getServerStore } from "../client/store";
-
+import antdCss from 'antd/dist/antd.css';
 
 // 改造这里 服务端做数据预取
 const loadBranchData = (pathname, store) => {
@@ -37,7 +37,7 @@ const loadBranchData = (pathname, store) => {
 
 export const render = (req, res) => {
   const store = getServerStore();
-  const context = { css: [] };
+  const context = { css: [antdCss] };
   // 加载完数据后，再把组件生成字符串返回，现在返回的组件都是有数据的结果
   loadBranchData(req.baseUrl, store).then((data) => {
     // 到这里所有的数据预加载完毕
