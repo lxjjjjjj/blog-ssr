@@ -11,16 +11,16 @@ import { getServerStore } from "../client/store";
 const loadBranchData = (pathname, store) => {
   let branch
   console.log('pathname',pathname,pathname === '/')
-  if (pathname === '/') {
+  // if (pathname === '/') {
     branch = matchRoutes(routes, pathname).filter((item=>{
       return item.match.isExact
     }))
-  } else {
-    pathname = pathname.split('/')[1]
-    branch = routes.filter((item=>{
-      return item.path.includes(pathname)
-    }))
-  }
+  // } else {
+  //   let newPath = pathname.split('/')[1]
+  //   branch = routes.filter((item=>{
+  //     return item.path.includes(newPath)
+  //   }))
+  // }
   console.log('branch',branch)
 // warning: 这里route.loadData 需要错误捕获
   const promises = branch.map(({ route, match }) => {
