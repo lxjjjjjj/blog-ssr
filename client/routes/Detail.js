@@ -39,6 +39,8 @@ const Detail = (props) => {
  
   let html = marked(props.detail.article_content)
   useEffect(()=>{
+    console.log('props.detail',props.detail)
+    console.log('JSON.stringify(props.detail) !== {}',JSON.stringify(props.detail) !== '{}')
     if(JSON.stringify(props.detail) !== '{}' ) {
       props.getDetailData()
     }
