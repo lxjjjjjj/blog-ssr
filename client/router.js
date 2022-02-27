@@ -28,7 +28,7 @@ export const routes = [
     loadData:loadDetailData
   }
 ];
-
+console.log('renderRoutes(routes)',renderRoutes(routes))
 export default (
   <div>
     { renderRoutes(routes) }
